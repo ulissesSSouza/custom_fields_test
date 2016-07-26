@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h2>Novos Campos Adicionados</h2>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th> Nome</th>
+      <th> Tipo</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_fields.each do |custom_field| %>
+      <tr>
+        <td><%= custom_field.name %></td>
+        <td><%= custom_field.type %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_custom_field_path(custom_field), :class => 'btn btn-default btn-xs' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      custom_field_path(custom_field),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="form-group">
+    <div class="col-lg-offset-3 col-lg-10">
+      <%= link_to 'Inserir Novo Campo', new_custom_field_path, :class => 'btn btn-default' %>
+    </div>
+</div>
